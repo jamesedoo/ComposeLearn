@@ -1,15 +1,23 @@
 package com.example.superheroapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.superheroapp.model.Hero
 import com.example.superheroapp.ui.theme.SuperheroAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+
                 }
             }
         }
@@ -30,17 +38,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun HeroItem(hero: Hero, modifier: Modifier = Modifier) {
+    Card {
+        Row {
+            Column {
+                Text(text = "")
+            }
+            Image(
+                painter = painterResource(id = hero.imageRes),
+                contentDescription = stringResource(
+                    id = hero.descriptionRes
+                )
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun HeroItemPreview() {
     SuperheroAppTheme {
-        Greeting("Android")
+        HeroItem(Hero(R.string.hero1, R.drawable.android_superhero1, R.string.description1))
     }
 }
