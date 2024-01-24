@@ -1,1 +1,3 @@
-This is my learning project
+<h1> Compose Projects</h1>
+<br>
+Android app beginner project using Jetpack Compose.
