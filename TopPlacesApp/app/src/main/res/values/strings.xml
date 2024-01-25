@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Top Places App</string>
+    <string name="sydney">Sydney</string>
+    <string name="uluru">Uluru</string>
+    <string name="melbourne">Melbourne</string>
+    <string name="perth">Perth</string>
+    <string name="kangaroo">Kangaroo Island</string>
+    <string name="kakadu">Kakadu</string>
+    <string name="hobart">Hobart</string>
+    <string name="goldcoast">Gold Coast</string>
+    <string name="byronbay">Byron Bay</string>
 </resources>
