@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.example.unscramble.data.MAX_NO_OF_WORDS
 import com.example.unscramble.data.SCORE_INCREASE
 import com.example.unscramble.data.allWords
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -70,14 +71,28 @@ class GameViewModel : ViewModel() {
     }
 
     private fun updateGameState(updatedScore: Int) {
-        _uiState.update {
-            it.copy(
-                isGuessedWordWrong = false,
-                currentScrambledWord = pickRandomWordAndShuffle(),
-                currentWordCount = it.currentWordCount.inc(),
-                score = updatedScore
-            )
+        if (usedWords.size == MAX_NO_OF_WORDS) {
+            // last round in the game
+            _uiState.update {
+                it.copy(
+                    isGuessedWordWrong = false,
+                    score = updatedScore,
+                    isGameOver = true
+                )
+            }
+
+        } else {
+            // regular round
+            _uiState.update {
+                it.copy(
+                    isGuessedWordWrong = false,
+                    currentScrambledWord = pickRandomWordAndShuffle(),
+                    currentWordCount = it.currentWordCount.inc(),
+                    score = updatedScore
+                )
+            }
         }
+
     }
 
     fun skipWord() {
